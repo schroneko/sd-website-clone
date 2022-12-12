@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 
 const Home: NextPage = () => {
   return (
@@ -41,7 +40,7 @@ const Home: NextPage = () => {
                       href="/signup/?next=/"
                       className="mr-[0.5rem] mb-[0.5rem] bg-[#FBFF00] border-transparent text-black/[.7] font-bold cursor-pointer pb-[calc(0.5em - 1px)] pl-[1em] pr-[1em] pt-[calc(0.5em - 1px)] text-center whitespace-nowrap select-none items-center rounded inline-flex text-base h-[2.5em] leading-normal relative align-top"
                     >
-                      Signup (free)
+                      Sign Up (free)
                     </a>
                   </div>
                 </div>
