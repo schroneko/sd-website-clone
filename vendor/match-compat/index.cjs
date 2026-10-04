@@ -1,0 +1,6 @@
+const pico=require('picomatch');
+function check(patterns){for(const s of [patterns].flat()){if(typeof s!=="string")throw new TypeError("Glob pattern must be a string");let depth=0;for(let i=0;i<s.length;i++){if(s[i]==="\\"){i++;continue;}if(s[i]==="{"||s[i]==="("){if(++depth>128)throw new SyntaxError("Glob nesting exceeds supported limit");}else if(s[i]==="}"||s[i]===")")depth=Math.max(0,depth-1);}}}
+function matcher(patterns,o={}){check(patterns);return pico(patterns,o);}
+function match(list,patterns,o={}){check(patterns);const all=[patterns].flat();const positive=all.filter(p=>!p.startsWith("!")||p.startsWith("!("));const negative=all.filter(p=>p.startsWith("!")&&!p.startsWith("!(")).map(p=>p.slice(1));const include=positive.length?matcher(positive,o):()=>true;const exclude=negative.length?matcher(negative,o):()=>false;return [...new Set([list].flat().filter(s=>include(s)&&!exclude(s)))];}
+match.isMatch=(s,p,o)=>matcher(p,o)(s);match.any=match.isMatch;match.all=(s,p,o)=>[p].flat().every(x=>match.isMatch(s,x,o));match.not=(l,p,o)=>[l].flat().filter(s=>!match.isMatch(s,p,o));match.matcher=matcher;match.makeRe=(p,o)=>{check(p);return pico.makeRe(p,o);};match.contains=(s,p,o)=>match.isMatch(s,p,{...o,contains:true});match.scan=pico.scan;match.parse=(p,o)=>{check(p);return pico.parse(p,o);};
+module.exports=match;
