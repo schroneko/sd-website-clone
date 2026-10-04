@@ -1,6 +1,6 @@
 module.exports = {
   plugins: ["prettier"],
-  extends: ["plugin:react/recommended"],
+  extends: ["plugin:react/recommended", "next/core-web-vitals", "next/typescript"],
   rules: {
     "prettier/prettier": "error",
   },
