@@ -1,0 +1,9 @@
+{
+  "name": "@schroneko/glob-compat",
+  "version": "1.0.1",
+  "private": true,
+  "main": "index.cjs",
+  "dependencies": {
+    "tinyglobby": "0.2.17"
+  }
+}

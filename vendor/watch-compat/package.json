@@ -1,0 +1,10 @@
+{
+  "name": "@schroneko/watch-compat",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.cjs",
+  "dependencies": {
+    "watch-engine": "npm:chokidar@4.0.3",
+    "picomatch": "4.0.7"
+  }
+}
