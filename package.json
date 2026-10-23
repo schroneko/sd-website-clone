@@ -36,6 +36,7 @@
   },
   "overrides": {
     "postcss": "8.5.28",
+    "postcss-selector-parser": "7.1.6",
     "flatted": "3.4.2",
     "fast-glob": "$fast-glob",
     "micromatch": "$micromatch",
@@ -46,6 +47,10 @@
     "brace-expansion@2": "2.1.7"
   },
   "resolutions": {
-    "postcss": "8.5.28"
+    "postcss": "8.5.28",
+    "postcss-selector-parser": "7.1.6",
+    "fast-glob": "file:./vendor/glob-compat",
+    "micromatch": "file:./vendor/match-compat",
+    "chokidar": "file:./vendor/watch-compat"
   }
 }
