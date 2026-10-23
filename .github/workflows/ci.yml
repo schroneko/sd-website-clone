@@ -28,3 +28,21 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm audit
+  yarn:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_TELEMETRY_DISABLED: 1
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - run: npm exec --yes --package=yarn@1.22.22 -- yarn install --frozen-lockfile --non-interactive
+      - run: git diff --exit-code -- yarn.lock
+      - run: node --test tests/platform-lock.test.cjs
+      - run: npm run test:security
+      - run: npm run lint
+      - run: npm run build
